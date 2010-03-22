@@ -28,3 +28,10 @@
   padding: 0 2px;
   margin: 0 0.5em;
 }
+#github-issues-widget li a {
+  text-decoration: none;
+  color: black;
+}
+#github-issues-widget li a:hover {
+  text-decoration: underline;
+}
