@@ -1,6 +1,7 @@
 var GithubIssuesWidget = {};
 GithubIssuesWidget.url = "http://github.com/api/v2/json/issues/list/" + GITHUB_ISSUES_USER + "/" + GITHUB_ISSUES_REPO + "/open?callback=?";
 GithubIssuesWidget.go = function () {
+  $('#github-issues-widget').append('<p class="loading">Loading...</p>');
   $.getJSON(this.url, function (data) {
     var list = $('<ul></ul>');
     $.each(data.issues, function (issueIndex, issue) {
@@ -15,6 +16,7 @@ GithubIssuesWidget.go = function () {
       issueHtml += "</li>";
       list.append(issueHtml);
     });
+    $('#github-issues-widget p.loading').remove();
     $('#github-issues-widget').append(list);
   });
 };

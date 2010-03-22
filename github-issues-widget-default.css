@@ -2,6 +2,8 @@
   background-color: #e2ecf2;
   width: 300px;
   border: 1px solid #cccccc;
+  font-family: Helvetica, Arial, sans-serif;
+  color: black;
 }
 #github-issues-widget ul {
   margin: 0;
@@ -12,7 +14,6 @@
   margin: 0;
   padding: 3px;
   border-bottom: 1px solid #cccccc;
-  font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 19px;
 }
@@ -22,7 +23,6 @@
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  color: black;
   font-family: Verdana, Helvetica, Arial, sans-serif;
   font-size: 9px;
   padding: 0 2px;
@@ -34,4 +34,9 @@
 }
 #github-issues-widget li a:hover {
   text-decoration: underline;
+}
+#github-issues-widget p.loading {
+  text-align: center;
+  font-size: 11px;
+  font-style: italic;
 }
