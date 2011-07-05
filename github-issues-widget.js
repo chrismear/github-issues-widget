@@ -51,8 +51,13 @@ GithubIssuesWidget.go = function () {
       issueHtml += '<a href="' + issue.html_url+ '">';
       issueHtml += issue.title;
       issueHtml += "</a>";
+      var style = "";
       $.each(issue.labels, function (labelIndex, label) {
-        issueHtml += '<span class="label">' + label.name + '</span>';
+        style = 'background-color:#' + label.color + ';';
+        if(label.color == "000000"){
+          style = 'color: white;' + style;
+        }
+        issueHtml += '<span class="label" style="' + style + '">' + label.name + '</span>';
       });
       issueHtml += "</li>";
       list.append(issueHtml);
