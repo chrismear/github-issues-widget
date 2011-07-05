@@ -14,20 +14,45 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+function is_defined(variable){
+  return typeof(variable) == "undefined"
+}
+
+function is_string(input){
+  return typeof(input)=='string';
+}
+
+function alert_key_value_pairs(map){
+  for (var key in map) {
+    alert([key, map[key]].join("\n\n"));
+  }
+}
+
+function error(msg){
+  alert("!!! ERROR - " + msg);
+}
+
 var GithubIssuesWidget = {};
-GithubIssuesWidget.url = "http://github.com/api/v2/json/issues/list/" + GITHUB_ISSUES_USER + "/" + GITHUB_ISSUES_REPO + "/open?callback=?";
+GithubIssuesWidget.url = "https://api.github.com/repos/" + GITHUB_ISSUES_USER + "/" + GITHUB_ISSUES_REPO + "/issues?callback=?"
+if(typeof window.GITHUB_ISSUES_LABELS != "undefined") {
+  if(is_string(GITHUB_ISSUES_LABELS)) {
+    GithubIssuesWidget.url += "&labels=" + GITHUB_ISSUES_LABELS;
+  } else {
+    error("GITHUB_ISSUES_LABELS must be a string, ignoring label filter");
+  }
+}
 GithubIssuesWidget.go = function () {
   $('#github-issues-widget').append('<p class="loading">Loading...</p>');
   $.getJSON(this.url, function (data) {
     var list = $('<ul></ul>');
-    $.each(data.issues, function (issueIndex, issue) {
-      var issueUrl = 'http://github.com/' + GITHUB_ISSUES_USER + '/' + GITHUB_ISSUES_REPO + '/issues#issue/' + issue.number;
+    $.each(data.data, function (issueIndex, issue) {
       var issueHtml = "<li>";
-      issueHtml += '<a href="' + issueUrl + '">';
+      issueHtml += '<a href="' + issue.html_url+ '">';
       issueHtml += issue.title;
       issueHtml += "</a>";
       $.each(issue.labels, function (labelIndex, label) {
-        issueHtml += '<span class="label">' + label + '</span>';
+        issueHtml += '<span class="label">' + label.name + '</span>';
       });
       issueHtml += "</li>";
       list.append(issueHtml);
