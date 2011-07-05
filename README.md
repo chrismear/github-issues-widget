@@ -7,4 +7,4 @@ It requires jQuery (tested with version 1.6.2).
 
 Open demo.html for a demo.
 
-Hastily written for One Click Orgs by Chris Mear.
+Hastily written for One Click Orgs by Chris Mear, with contributions from Justin Riley.
